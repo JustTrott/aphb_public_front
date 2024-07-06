@@ -71,7 +71,12 @@ export function History({
 		(battle) => battle.teams[0].league === league
 	);
 	// get battles that have highest .tour value
-	const highestTour = Math.max(...battles.map((battle) => battle.tour)) || 0;
+	const highestTour =
+		Math.max(
+			...battles.map((battle) =>
+				battle.teams[0].league === league ? battle.tour : 0
+			)
+		) || 0;
 	console.log(highestTour);
 	const activeBattles = filteredBattles.filter(
 		(battle) => battle.tour === highestTour
